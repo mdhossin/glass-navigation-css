@@ -1,0 +1,109 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  overflow-x: hidden;
+}
+
+#main-body {
+  height: 100vh;
+  background-image: url("/galaxy.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+
+.logo {
+  margin: 1.5rem;
+  color: white;
+  font-weight: bold;
+}
+.primay-header {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.primary-navigation {
+  list-style: none;
+  background-color: hsl(0, 0%, 0, 0.5);
+  backdrop-filter: blur(1rem);
+}
+
+.mobile-nav-toggle {
+  display: none;
+}
+/* this is for different browser support */
+@supports (backdrop-filter: blur(1rem)) {
+  .primary-navigation {
+    background-color: hsl(0, 0%, 100%, 0.1);
+    backdrop-filter: blur(0.5rem);
+  }
+}
+
+.primary-navigation a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+}
+.primary-navigation a:hover{
+    
+    border-bottom: 2px solid red;
+}
+
+/* mobile responsive */
+@media (max-width: 35em) {
+  .primary-navigation {
+    gap: 2em;
+    position: fixed;
+    z-index: 1000;
+    inset: 0 0 0 30%;
+    flex-direction: column;
+    padding: min(30vh, 10rem) 2rem;
+    transform: translateX(100%);
+
+    transition: transform 350ms ease-out;
+  }
+
+  .primary-navigation[data-visiable="true"] {
+    transform: translateX(0%);
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    z-index: 9999;
+
+    position: absolute;
+
+    background: transparent;
+    color: white;
+    font-size: 1.2em;
+    border: none;
+
+    top: 2rem;
+    right: 2rem;
+  }
+}
+
+@media (min-width: 35em) and (max-width: 55em) {
+  .primary-navigation a > span {
+    display: none;
+  }
+}
+
+/* for desktop responsive */
+
+@media screen and (min-width: 35em) {
+  .primary-navigation {
+    gap: 3rem;
+    padding-block: 1.5rem;
+    padding-inline: clamp(3rem, 10vw, 10rem);
+  }
+}
